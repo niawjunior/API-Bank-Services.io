@@ -11,6 +11,7 @@ $(document).ready(function() {
     return [year, month, day].join('-');
 }
     $("button").click(function() {
+        alert("กรุณารอสักครู่..");
         $.ajax({
             type: "GET",
             url: "https://iapi.bot.or.th/Stat/Stat-ReferenceRate/DAILY_REF_RATE_V1/?start_period=2017-07-10&end_period="+formatDate(Date()),
