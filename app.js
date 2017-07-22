@@ -22,7 +22,8 @@ $(document).ready(function() {
                     console.log(result.result.data.data_detail[i]);
                 }
                 $("#result").html(result.result.data.data_detail[0].period);
-                $("#money").html('1 TH = ' + result.result.data.data_detail[0].rate + 'US');
+                $("#date").html('อัพเดทล่าสุดเมื่อ');
+                $("#money").html('1 THB = ' + result.result.data.data_detail[0].rate + ' US');
             },
             error: function(result) {}
         });
