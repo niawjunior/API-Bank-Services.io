@@ -21,7 +21,7 @@ $(document).ready(function() {
                 for (var i = 0; i < result.result.data.data_detail.length; i++) {
                     console.log(result.result.data.data_detail[i]);
                 }
-                $("#date").html('อัพเดทล่าสุดเมื่อ ' + result.result.data.data_detail[0].period);
+                $("#result").html(result.result.data.data_detail[0].period);
                 $("#money").html('1 TH = ' + result.result.data.data_detail[0].rate + 'US');
             },
             error: function(result) {}
