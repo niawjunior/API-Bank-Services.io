@@ -1,31 +1,31 @@
-$(document).ready(function() {
-    function formatDate(date) {
-    var d = new Date(date),
-        month = '' + (d.getMonth() + 1),
-        day = '' + d.getDate(),
-        year = d.getFullYear();
+﻿    function exchange(){
+        var date = new Date();
+        date.setDate(date.getDate());
+        var dateString = date.toISOString().split('T')[0];
 
-    if (month.length < 2) month = '0' + month;
-    if (day.length < 2) day = '0' + day;
-
-    return [year, month, day].join('-');
-}
-    $("button").click(function() {
+        var olddate = new Date();
+        olddate.setDate(olddate.getDate() - 3 );
+        var dateString_old = olddate.toISOString().split('T')[0];
         alert("กรุณารอสักครู่..");
         $.ajax({
             type: "GET",
-            url: "https://iapi.bot.or.th/Stat/Stat-ReferenceRate/DAILY_REF_RATE_V1/?start_period=2017-07-10&end_period="+formatDate(Date()),
+            url: "https://iapi.bot.or.th/Stat/Stat-ReferenceRate/DAILY_REF_RATE_V1/?start_period="+dateString_old+"&end_period="+dateString,
             beforeSend: function(xhr) { xhr.setRequestHeader('api-key', 'U9G1L457H6DCugT7VmBaEacbHV9RX0PySO05cYaGsm'); },
             success: function(result) {
-                // $("#report_name_th").html(JSON.stringify(result.result.data.data_header.report_name_th));
                 for (var i = 0; i < result.result.data.data_detail.length; i++) {
                     console.log(result.result.data.data_detail[i]);
                 }
-                $("#result").html(result.result.data.data_detail[0].period);
-                $("#date").html('อัพเดทล่าสุดเมื่อ');
-                $("#money").html('1 THB = ' + result.result.data.data_detail[0].rate + ' US');
+                $("#date").html('อัพเดทล่าสุดเมื่อ'+result.result.data.data_detail[0].period );
+                var rate = result.result.data.data_detail[0].rate;
+                $("#money").html('1 THB = ' + rate + ' US');
+                var money = $("#input_money").val();
+                var ustoth = money*rate;
+                $("#exchange").html(money+' US = '+ustoth+' TH');
             },
             error: function(result) {}
         });
-    });
-});
+
+
+
+    }
+
