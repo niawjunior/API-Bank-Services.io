@@ -15,7 +15,7 @@
                 for (var i = 0; i < result.result.data.data_detail.length; i++) {
                     console.log(result.result.data.data_detail[i]);
                 }
-                $("#date").html('อัพเดทล่าสุดเมื่อ'+result.result.data.data_detail[0].period );
+                $("#date").html('อัพเดทล่าสุดเมื่อ '+result.result.data.data_detail[0].period );
                 var rate = result.result.data.data_detail[0].rate;
                 $("#money").html('1 THB = ' + rate + ' US');
                 var money = $("#input_money").val();
